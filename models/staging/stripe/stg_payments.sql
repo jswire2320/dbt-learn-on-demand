@@ -6,7 +6,7 @@ with payments as (
         paymentmethod as payment_method,
         status,
         -- cents to dollars
-        amount / 100 as amount,
+        {{ cents_to_dollars('amount') }} as amount,
         created as created_at
 
     from {{ source('stripe', 'payment') }}
